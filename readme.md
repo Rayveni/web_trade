@@ -5,6 +5,8 @@
 
 docker rm $(docker ps -a -q -f status=exited) #delete stopped containers
 
+docker-compose --env-file .env up -d
+docker-compose --env-file .env down
 
 
 docker-compose build — собрать проект
