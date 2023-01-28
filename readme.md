@@ -1,18 +1,13 @@
-### Containerisation
-* docker build -t web_trade_image .
-* docker run -d -p 8000:80 web_trade_image
-
-
-docker rm $(docker ps -a -q -f status=exited) #delete stopped containers
-
-docker-compose --env-file .env up -d
-docker-compose --env-file .env down
-
-
-docker-compose build — собрать проект
-docker-compose up -d — запустить проект
-docker-compose down — остановить проект
-docker-compose logs -f [service name] — посмотреть логи сервиса
-docker-compose ps — вывести список контейнеров
-docker-compose exec [service name] [command» — выполнить команду в контейнере
-docker-compose images — список образов
+### Containerization
+* docker-compose --env-file .env build
+* build & run container:docker-compose --env-file .env up -d
+* stop container:docker-compose --env-file .env down
+#### docker  usefull comands
+* delete stopped containers:docker rm $(docker ps -a -q -f status=exited)
+* build project: docker-compose build 
+* run project:docker-compose up -d 
+* stop project:docker-compose down
+* service logs:docker-compose logs -f [service name] 
+* containers list:docker-compose ps 
+* execute command in container:docker-compose exec [service name] [command]
+* imageslisr:docker-compose images 
