@@ -1,5 +1,5 @@
 ### Containerization
-* *docker-compose --env-file .env build
+* *build*:docker-compose --env-file .env build
 * *build & run container*:docker-compose --env-file .env up -d
 * *stop container*:docker-compose --env-file .env down
 #### docker  usefull comands
