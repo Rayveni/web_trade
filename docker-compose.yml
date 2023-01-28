@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+
+  app:
+    build:
+      context: ./backend/ 
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT 
+    environment:
+      - mongo_user=${MONGO_INITDB_ROOT_USERNAME}
+      - mongo_pass=${MONGO_INITDB_ROOT_PASSWORD}      
+      - mongo_host=${mongo_host}   
+      - mongo_port=${mongo_port}         
+    ports:
+      - "${app_ports}"
+    depends_on:
+      - db
+    networks:
+      - backnet
+      - frontnet
+  db:
+    image: mongo:6.0.4
+    hostname: ${mongo_host}   
+    #restart: always    
+    environment:
+      #- MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongodata:/data/db    
+      #- type: bind
+      # source: "/c/Users/ivolochkov/YandexDisk/mongo_data"
+      #  target: /data/db/        
+    #    volume:
+    #      nocopy: true  # flag to disable copying of data from a container when a volume is created      
+    #./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    #expose:
+    #  - ${mongo_port}
+    ports:
+      - "${mongo_port}:${mongo_port}"    
+    networks:
+     - backnet   
+      
+networks:
+  backnet:
+    #driver: bridge#overlay
+    #internal: true
+  frontnet:
+  
+volumes:
+  mongodata: 
