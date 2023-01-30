@@ -8,10 +8,17 @@ services:
     # (default stop signal from Compose is SIGTERM)
     stop_signal: SIGINT 
     environment:
-      - mongo_user=${MONGO_INITDB_ROOT_USERNAME}
-      - mongo_pass=${MONGO_INITDB_ROOT_PASSWORD}      
-      - mongo_host=${mongo_host}   
-      - mongo_port=${mongo_port}         
+      - mongo_url=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${mongo_host}:${mongo_port}/${MONGO_INITDB_DATABASE}?authSource=admin   
+      - mongo_work_db=${MONGO_INITDB_DATABASE}
+    volumes: 
+      - type: bind
+        source: ${code_source}
+        target: /app     
+    #    volume:
+    #      nocopy: true  # flag to disable copying of data from a container when a volume is created      
+    #./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    #expose:
+    #  - ${mongo_port}      
     ports:
       - "${app_ports}"
     depends_on:
@@ -24,11 +31,12 @@ services:
     hostname: ${mongo_host}   
     #restart: always    
     environment:
-      #- MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongodata:/data/db    
+      - mongo_conf:/data/configdb       
       #- type: bind
       # source: "/c/Users/ivolochkov/YandexDisk/mongo_data"
       #  target: /data/db/        
@@ -50,3 +58,4 @@ networks:
   
 volumes:
   mongodata: 
+  mongo_conf:   
