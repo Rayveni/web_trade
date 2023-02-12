@@ -50,7 +50,7 @@ function handleInputChange(val) {
 };
 
 function crossfilter_coverter(table_name) {
-    data_arr = get_data_to_js('/query_data?table=' + table_name)
+    data_arr = get_data_to_js('/api/query_data?table=' + table_name)
         const red_index = data_arr[0].indexOf('redemption'),
 		     sec_name_index=data_arr[0].indexOf('sec_name'),
 		     ticker_index=data_arr[0].indexOf('ticker');

@@ -31,7 +31,7 @@ def _bonds():
 
     data['optional_css_top']=['handsontable.full.min','daterangepicker']
     data['last_updated_date']=last_updated_date	
-    data['last_updated_date_alert']=last_updated_date_alert		
+    data['last_updated_date_alert']=last_updated_date_alert	
     data['optional_js_bottom']=['vendor/daterangepicker/moment.min',
                                 'vendor/crossfilter/crossfilter.min',
                                 'vendor/daterangepicker/daterangepicker.min',

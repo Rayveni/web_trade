@@ -3,7 +3,7 @@ from datetime import datetime
 from . import reports_bp
 
 #from .config_manager import config_manager
-from ..commons import flash_complex_result,exception,init_db_manager
+from app.commons import flash_complex_result,exception,init_db_manager
 
 
 @exception

@@ -39,10 +39,6 @@ return yyyy  + '-' + mm + '-' + dd;
       $('.sidebar .collapse').collapse('hide');
     };
   });
-
-
-
-
 })(jQuery); // End of use strict
 
 

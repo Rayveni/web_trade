@@ -21,7 +21,7 @@ def _upload_jobs():
     _upload_contorls={'smartlabbondsrus':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
                       'smartlabbondsusd':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
                       'job_world_fond_indexes':{'job':'job_yahoo','actual_date':None,'sys_updated':None}, 
-                      'sec_sectors':{'job':'job_sectors','actual_date':None,'sys_updated':None},
+                      #'sec_sectors':{'job':'job_sectors','actual_date':None,'sys_updated':None},
                       'mosex_securities':{'job':'job_mosex_securities','actual_date':None,'sys_updated':None}
                      }
 
@@ -39,7 +39,11 @@ def _upload_jobs():
             except:
                 _upload_contorls[_key]={'job':'None','actual_date':row['actual_date'],'sys_updated':row['sys_updated']}   
     data['upload_controls']= _upload_contorls
-
+    data['optional_css_top']=['handsontable.full.min']
+    data['optional_js_bottom']=[
+                                'vendor/handsontable/handsontable.full.min',    
+                                'js/ajax_get_data',
+                                'js/uploads'] 
     return render_template('upload_jobs.html',data=data)	
 	
  
@@ -56,7 +60,7 @@ def _run_job(params):
         flash_complex_result((False,'None parameter passed'),None,None)  
     elif params == 'all':
         break_flg=False
-        for _job in ['job_sectors','job_sl_bonds','job_yahoo','job_mosex_securities']:
+        for _job in ['job_sl_bonds','job_yahoo','job_mosex_securities']:
             err,res=__exec_job(_job)
             if err[0] is False:
                 flash_complex_result(err,res,'Executed successfully')

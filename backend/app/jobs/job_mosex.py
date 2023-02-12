@@ -18,11 +18,27 @@ def job_mosex_securities(db_manager)->tuple:
 
 
 def job_update_sec_hist(db_manager)->tuple:
-
     now_datetime=datetime.now()
+    res=__update_mosex_sec(db_manager,now_datetime)
+    return res 
 #r=db.find_one('sec_history_manager_mosex',{"secid":'GAZP111'})	 now.strftime("%m")
-    return __db_upload_sec_data(db_manager,'SBER',now_datetime)
-
+    #return __db_upload_sec_data(db_manager,'SBER',now_datetime)
+    
+def __update_mosex_sec(db_manager,start_job):
+    sec_list=db_manager.get_table('mosex_securities',query={'list_section':"Первый уровень",
+                                                     'supertype':{'$in':['Акции' ,"Депозитарные расписки"
+                                                                        ]}
+                                                    },
+                           columns=['trade_code'],result='json') 
+    if sec_list==[]:
+        return False,'mosex_securities'                           
+    for security_item in sec_list:
+        security=security_item['trade_code']
+        res=db_manager.insert_into_table_from_attr('upload_mosex_sec',
+                                               upload_mosex_sec(trade_code=security,last_updated=start_job),
+                                               rewrite=False,
+                                               update_criteria={"trade_code":security})     
+    return res
 def __get_sec_data(security)->tuple:
     res,raw_data=mosex().security_hist(security)
     if res is False:

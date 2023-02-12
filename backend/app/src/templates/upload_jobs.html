@@ -37,10 +37,25 @@
 	
 			<!-- End card-body -->	
 			</div>
+		
 		<!-- End card-->	
 		</div>
 	<!-- End c-->		
 	</div>
 </div>
-
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card shadow mb-4">
+			<div class="card-body">
+				<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>			
+				<a href="/run_job/job_update_sec_hist"> 
+				   <button type="button" class="button1 button_size1" id="btn_template">Загрузка истории акций</button> 
+				</a>
+	 <div id="h_table_id" class="hs_container" ></div>
+			<!-- End card-body -->	
+			</div>	
+		</div>
+	<!-- End c-->		
+	</div>
+</div>			
 {% endblock %}

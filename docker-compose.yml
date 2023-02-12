@@ -10,6 +10,7 @@ services:
     environment:
       - mongo_url=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${mongo_host}:${mongo_port}/${MONGO_INITDB_DATABASE}?authSource=admin   
       - mongo_work_db=${MONGO_INITDB_DATABASE}
+      - TZ=${timezone}      
     volumes: 
       - type: bind
         source: ${code_source}

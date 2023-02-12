@@ -3,7 +3,7 @@ from flask import render_template,request,redirect,url_for,send_file
 from . import portfolio_bp
 from os import path,getcwd
 #from .config_manager import config_manager
-from ..commons import flash_complex_result,exception,init_db_manager
+from app.commons import flash_complex_result,exception,init_db_manager
 from  pandas import read_csv
 
 current_dir=getcwd()

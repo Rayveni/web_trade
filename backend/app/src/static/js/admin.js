@@ -3,7 +3,7 @@ var  hot2;
 function process_htable(obj, dropdown_id) {
     let _checked=document.getElementById("auto_csv").checked,
         selected_table=obj.text,
-        query_string='/query_data?table=';
+        query_string='/api/query_data?table=';
     query_string=query_string.concat(selected_table);
 
 

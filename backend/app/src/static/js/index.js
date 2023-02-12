@@ -153,7 +153,7 @@ function prepare_total(total_dict, total_sum, template_arr) {
     return [template_arr, _arr];
 }
 function get_sec_sectors(arr) {
-    let url = "/query_data?table=sec_sector&noconvert=1",
+    let url = "/api/query_data?table=sec_sector&noconvert=1",
     _post = {
         'query': {
             'ticker': {

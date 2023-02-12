@@ -10,7 +10,7 @@ $.ajax({
 				async: false,
                 success: function(response) {
 		
-                     data1 = JSON.parse(response)  ;                
+                     data1 = response ;                
                 },
                 error: function(error) {
                     console.log(error);

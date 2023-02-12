@@ -143,7 +143,7 @@ def upload_mongo_form():
         return redirect(url_for('admin_bp._database'))		
 		
 		
-
+"""
 def __convert_to_front(arr):
     if len (arr)>0:
         last_row=arr[-1]
@@ -192,3 +192,4 @@ def __prepare_csv_f(s):
     if s=='nan':
         s=""
     return s
+"""
