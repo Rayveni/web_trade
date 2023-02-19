@@ -7,4 +7,4 @@ RUN pip3 install -r /requirements.txt
 WORKDIR /app
 
 #ENTRYPOINT ["./gunicorn.sh"]
-CMD ["python", "./server.py"]
+#CMD ["python", "./server.py"]

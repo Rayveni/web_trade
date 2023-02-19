@@ -3,7 +3,7 @@ from datetime import datetime
 #from json import dumps
 
 from . import api_bp
-from app.commons import init_db_manager
+from app.commons import init_db_manager,background_tasks
 from app.jobs import *
 
 db_mng=init_db_manager()
@@ -42,12 +42,12 @@ def query_data():
     for k,v in post_data.items():
         data_kvargs[k]=v      
     data_request=db_mng.get_table(_table,**data_kvargs)
-    #prepare output   
+    #prepare output 
     if  _noconvert is not None or len(data_request)==0:
         pass
     else:
         last_row=data_request[-1]
-        datetime_cols=[i for i in range(len(last_row)) if isinstance(last_row[i], datetime)]
+        datetime_cols=[i for i in range(len(last_row)) if isinstance(last_row[i], datetime)]     
         for i in range(1, len(data_request)):
             for col in datetime_cols:   
                 data_request[i][col]=data_request[i][col].strftime(default_time_format)        
@@ -59,5 +59,15 @@ def query_data():
                         headers={"Content-disposition":"attachment; filename={}.csv".format(_table)})
     return jsonify(data_request)
 
-
-
+@api_bp.route('/api/queue_info', methods=['GET', 'POST'])
+def queue_info():
+    _registry=request.args.get('registry')
+    _report=request.args.get('report')    
+    bt=background_tasks()
+      
+    if _report =='count' or _report is None:
+        if _registry is None:
+            res=bt._queue.count
+        else:
+            res=len(bt.queue_jobs(_registry))
+    return jsonify(res) 
