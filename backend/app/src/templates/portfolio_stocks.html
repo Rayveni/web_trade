@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+
+<div class="col-lg-12">
+	<div class="card shadow mb-4">
+		<div class="card-body">
+<form method="post" action="{{ url_for('upload_bp._run_job',params='job_sl_bonds',redirect_url=request.endpoint)}}">
+ 
+
+</form>
+
+
+<a href="/portfolio_stocks/action/template"> 
+   <button type="button" class="button1 button_size1" id="btn_template">template</button> 
+</a>
+<a href="/portfolio_stocks/action/template">
+    <button type="button" class="button1 button_size1"id="btn_download">download stocks</button>
+
+</a>
+
+
+
+    <form action="{{ url_for('portfolio_bp.btn_actions',action_type='upload_stocks') }}" method=post enctype=multipart/form-data>
+      <input type=file name=file accept=".csv">
+         <input type=submit class="button1" value="Upload stocks">
+    </form>
+
+
+
+		<!-- End card-body -->	
+		</div>
+	<!-- End card-->	
+	</div>
+<!-- End c-->		
+</div>
+
+{% endblock %}

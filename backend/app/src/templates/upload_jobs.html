@@ -1,0 +1,65 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card shadow mb-4">
+
+			
+			<div class="card-body">
+					<form id="refresh_form" method="post" action="{{ url_for('upload_bp._run_job',params='all') }}">
+
+							<button id="start_all_jobs"   
+											type="submit"  name="submit_button" value="start_all_jobs" class="btn save_btn"><i class="fas fa-sync"></i>
+							</button>
+									 
+					</form>			
+			<table id="job_run_table">
+				<tr class="header">
+					<th>Job</th>
+					<th>Actual Date</th>
+					<th>System Updated</th>		
+					<th>Action</th>						
+				</tr>
+				{% for key, value in data.upload_controls.items() %}
+					<tr>
+					<td>{{key}}</td>
+					<td>{{value.actual_date}}</td>			
+					<td>{{value.sys_updated}}</td>
+					<td> <form id=  "upload_form_{{key}}"   action="{{ url_for('upload_bp._run_job',params=value.job) }}"   >
+								<input type="submit" value="Обновить!" name ="report_{{key}}" id= "button_upload_form_{{key}}" >
+			
+						</form>
+
+					</td>												
+					</tr>							
+				{% endfor %}					
+			</table>	
+	
+			<!-- End card-body -->	
+			</div>
+		
+		<!-- End card-->	
+		</div>
+	<!-- End c-->		
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card shadow mb-4">
+			<div class="card-body">
+				<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>			
+				<a href="/run_job/job_update_sec_hist"> 
+				   <button type="button" class="button1 button_size1" id="btn_template">Загрузка истории акций</button> 
+				</a>
+				<br>
+			<span id="tasks_in_queue"></span>	
+			<br>
+			<span id="failed_uploads"></span>
+	 <div id="h_table_id" class="hs_container" ></div>
+			<!-- End card-body -->	
+			</div>	
+		</div>
+	<!-- End c-->		
+	</div>
+</div>			
+{% endblock %}

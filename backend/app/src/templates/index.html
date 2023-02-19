@@ -1,0 +1,82 @@
+{% extends "_base.html" %}
+{% block content %}
+<div id="content-wrapper" class="d-flex flex-column">
+
+	<!-- Main Content -->
+	<div id="content">
+		<div class="row">
+			<div class="col-lg-4">
+
+
+				<!-- Brand Buttons -->
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">Holdings overview</h6>
+					</div>
+					<div class="card-body" id="acc_total">
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-4">
+
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">Overall P&L</h6>
+					</div>
+					<div class="card-body">
+						<p>Works with any button colors, just use the <code>.btn-icon-split</code> class and the markup in the examples below. The examples below also use the <code>.text-white-50</code> helper class on the icons for additional styling, but it is not required.</p>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="col-lg-4">
+
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">Overall P&L%</h6>
+					</div>
+					<div class="card-body">
+						<p>Works with any button colors, just use the <code>.btn-icon-split</code> class and the markup in the examples below. The examples below also use the <code>.text-white-50</code> helper class on the icons for additional styling, but it is not required.</p>
+
+					</div>
+				</div>
+
+			</div>			
+
+		</div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+            	<div class="card shadow mb-4">
+            		<div class="card-body">
+
+            	
+            				
+            			<div class="tab" id=tab_1>
+            			  <button class="tablinks" onclick="change_report(event,'Assets')">Assets</button>
+            			  <button class="tablinks" onclick="change_report(event,'Sector')">Sector</button>						  
+            			  <button class="tablinks" onclick="change_report(event,'Industry')">Industry</button>
+            	
+            			</div>
+             			<div class="tab" id=tab_2>
+            		       <button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>						
+
+            			</div>           
+            	       <div id="h_table_id" class="hs_container" ></div>
+            		<!-- End card-body -->	
+            		</div>
+            	<!-- End card-->	
+            	</div>
+            <!-- End c-->		
+            </div>
+            
+		</div>
+
+	</div>
+	<!-- End of Main Content -->
+</div>
+
+{% endblock %}

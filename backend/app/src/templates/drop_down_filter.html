@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <button onclick="dropdown_show('dropdown_id_{{drop_down_filter_params.id}}')" id="button_drp_id_{{drop_down_filter_params.id}}" class="dropbtn">{{drop_down_filter_params.placeholder}} </button>
+  <div id='dropdown_id_{{drop_down_filter_params.id}}' class="dropdown-content">
+    <input type="text" placeholder="Search.." id="dropdown_input_{{drop_down_filter_params.id}}" 
+	onkeyup="dropdown_filter_function('dropdown_id_{{drop_down_filter_params.id}}','dropdown_input_{{drop_down_filter_params.id}}')"
+    class="dropdown_input"
+    >
+
+
+	{% for f_value in drop_down_filter_params.filter_vals %}
+       <a onclick={{drop_down_filter_params.onclick}} href=#{{f_value}}>{{f_value}}</a>						
+	{% endfor %}	
+
+
+  </div>
+</div>
+

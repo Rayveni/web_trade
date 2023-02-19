@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+{% block content %}
+<div id="content-wrapper" class="d-flex flex-column">
+
+	<!-- Main Content -->
+	<div id="content">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card shadow mb-4">
+
+					
+					<div class="card-body">
+                      <p> <input type="checkbox" id="auto_csv" > auto csv</p>
+				 {% with drop_down_filter_params= data.db_drop_down_filter %}
+					{% include 'drop_down_filter.html' %}
+					{% endwith %}
+			
+					<!-- End card-body -->	
+					</div>
+				<!-- End card-->	
+				</div>
+			<!-- End c-->		
+			</div>
+		</div>
+		<div class="row flex-nowrap">
+			<div class="col-lg-12">
+				<div class="card shadow mb-4">
+
+					
+					<div class="card-body">
+					<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>
+				    <div id="h_table_id" class="hs_container" ></div>
+			
+					<!-- End card-body -->	
+					</div>
+				<!-- End card-->	
+				</div>
+			<!-- End c-->		
+			</div>
+		</div>
+
+
+	<!-- End of Main Content -->
+</div>
+
+{% endblock %}
+
