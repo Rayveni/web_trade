@@ -78,7 +78,7 @@ services:
     hostname: redis    
     image: redis:7.0.8-bullseye  
     ports:
-      - "6379:6379"      
+      - ${redis_port}       
     networks:
      - backnet      
 networks:
